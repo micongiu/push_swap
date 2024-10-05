@@ -3,7 +3,7 @@ NAME = push_swap
 CC = cc
 CFLAGS = -Wall -Wextra -g -I./include -O2
 
-SRCS = ./src/push_swap.c 
+SRCS = ./src/push_swap.c ./src/ft_control_stack.c ./src/ft_error_and_free.c ./src/ft_init.c ./src/ft_utility_0.c
 SRC_DIRS = ./src
 OBJS = ${SRCS:.c=.o}
 
