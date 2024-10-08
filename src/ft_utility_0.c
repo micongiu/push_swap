@@ -73,3 +73,16 @@ int	dup_0_or_sign(char *c)
 	}
 	return (0);
 }
+
+int	ft_stack_size(t_stack *stack)
+{
+	size_t	i;
+
+	i = 0;
+	while (stack)
+	{
+		stack = stack->next;
+		i++;
+	}
+	return (i);
+}

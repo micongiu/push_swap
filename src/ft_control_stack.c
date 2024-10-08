@@ -21,6 +21,18 @@ t_stack	*ft_stacklast(t_stack *stack)
 	return (stack);
 }
 
+t_stack	*ft_stacklast_circ(t_stack *stack)
+{
+	t_stack *tmp;
+
+	tmp = stack;
+	if (!stack)
+		return (NULL);
+	while (stack != tmp)
+		stack = stack->next;
+	return (stack->prev);
+}
+
 void	ft_add_back(t_stack **stack, t_stack *stack_new)
 {
 	if (!stack)

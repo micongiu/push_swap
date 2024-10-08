@@ -26,8 +26,7 @@ int	main(int argc, char **argv)
 		a = ft_init_argc_n(argv);
 	if (!ft_check_dup(a))
 		ft_error_free(&a, NULL);
-		// ft_sort(&a);
-	ft_printf("ok\n");
+	ft_sort(&a);
 	free_stack(&a);
 	return (1);
 }

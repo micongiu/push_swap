@@ -81,3 +81,14 @@ t_stack	*ft_init_argc_n(char **argv)
 	}
 	return (a);
 }
+
+int	ft_is_sort(t_stack *a)
+{
+	while (a)
+	{
+		if (a->next && a->nb > a->next->nb)
+			return (0);
+		a = a->next;
+	}
+	return (1);
+}
