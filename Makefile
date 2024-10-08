@@ -3,8 +3,8 @@ NAME = push_swap
 CC = cc
 CFLAGS = -Wall -Wextra -g -I./include -O2
 
-SRCS = ./src/push_swap.c ./src/ft_control_stack.c ./src/ft_error_and_free.c ./src/ft_init.c ./src/ft_utility_0.c ./src/ft_utility_1.c ./src/ft_case_a.c ./src/ft_do_case_a.c \
-		./src/ft_do_case_b.c ./src/ft_sort_all.c ./src/move_push.c ./src/move_reverse_rotate.c ./src/move_rotate.c ./src/move_swap.c ./src/ft_case_b.c
+SRCS = ./src/push_swap.c ./src/ft_error_and_free.c ./src/ft_init.c ./src/ft_quick_sort.c ./src/ft_sort_all.c ./src/ft_utility_0.c ./src/ft_utility_1.c \
+	./src/move_push.c ./src/move_reverse_rotate.c ./src/move_rotate.c ./src/move_swap.c
 SRC_DIRS = ./src
 OBJS = ${SRCS:.c=.o}
 

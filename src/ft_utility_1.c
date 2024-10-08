@@ -1,93 +1,73 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_utility_1.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: micongiu <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/08 21:45:19 by micongiu          #+#    #+#             */
+/*   Updated: 2024/10/08 21:45:21 by micongiu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
 
-int	ft_max(t_stack *stack)
+int	ft_max(int *stack, int len)
 {
-	int		max;
+	int	i;
+	int	max;
 
-	max = -2147483648;
-	while (stack)
+	i = 0;
+	max = stack[i];
+	while (i < len)
 	{
-		if (stack->nb > max)
-			max = stack->nb;
-		stack = stack->next;
+		if (stack[i] > max)
+			max = stack[i];
+		i++;
 	}
 	return (max);
 }
 
-int	ft_min(t_stack *stack)
+int	find_index(int *stack, int nb)
 {
-	int	min;
+	int	i;
 
-	min = 2147483647;
-	while (stack)
-	{
-		if (stack->nb < min)
-			min = stack->nb;
-		stack = stack->next;
-	}
-	return (min);
-}
-
-int	ft_find_index(t_stack *stack, int number)
-{
-	int	index;
-
-	index = 1;
-	while (stack->nb != number)
-	{
-		index++;
-		stack = stack->next;
-	}
-	return (index);
-}
-
-int	ft_new_place_b(t_stack *b, int number_to_push)
-{
-	int		i;
-	t_stack	*tmp;
-
-	i = 1;
-	if (number_to_push > b->nb && number_to_push < ft_stacklast(b)->nb)
-		i = 0;
-	else if (number_to_push > ft_max(b) || number_to_push < ft_min(b))
-	{
-		// printf("ciao\n");
-		i = ft_find_index(b, ft_max(b));
-
-	}
-	else
-	{
-		tmp = b->next;
-		while (b->nb < number_to_push || tmp->nb > number_to_push)
-		{
-			b = b->next;
-			tmp = b->next;
-			i++;
-		}
-	}
+	i = 0;
+	while (stack[i] != nb)
+		i++;
 	return (i);
 }
 
-int	ft_new_place_a(t_stack *a, int number_to_push)
+void	small_sort(int *tmp_stk, int dim)
 {
-	int		i;
-	t_stack	*tmp;
+	int	i;
+	int	j;
+	int	tmp;
 
-	i = 1;
-	if (number_to_push < a->nb && number_to_push > ft_stacklast(a)->nb)
-		i = 0;
-	else if (number_to_push > ft_max(a) || number_to_push < ft_min(a))
-		i = ft_find_index(a, ft_min(a));
-	else
+	i = 0;
+	while (i < dim)
 	{
-		tmp = a->next;
-		while (a->nb > number_to_push || tmp->nb < number_to_push)
+		j = i + 1;
+		while (j < dim)
 		{
-			a = a->next;
-			tmp = a->next;
-			i++;
+			if (tmp_stk[i] > tmp_stk[j])
+			{
+				tmp = tmp_stk[i];
+				tmp_stk[i] = tmp_stk[j];
+				tmp_stk[j] = tmp;
+			}
+			j++;
 		}
+		i++;
 	}
-	printf("ciao\n");
-	return (i);
+}
+
+int	if_push(t_stack *stack, int dim, int f)
+{
+	if (f == 1)
+		pb(stack);
+	else if (f == 0)
+		pa(stack);
+	dim--;
+	return (dim);
 }

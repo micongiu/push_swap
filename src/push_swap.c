@@ -6,7 +6,7 @@
 /*   By: micongiu <micongiu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 15:54:33 by micongiu          #+#    #+#             */
-/*   Updated: 2024/10/05 16:54:56 by micongiu         ###   ########.fr       */
+/*   Updated: 2024/10/08 21:38:33 by micongiu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,18 @@
 
 int	main(int argc, char **argv)
 {
-	t_stack	*a;
+	t_stack	*stack;
 
 	if (argc < 2)
 		ft_error();
 	if (!argv[1][0])
 		ft_error();
 	if (argc == 2)
-		a = ft_init_argc_2(argv);
+		stack = ft_init_argc_2(argv);
 	else
-		a = ft_init_argc_n(argv);
-	if (!ft_check_dup(a))
-		ft_error_free(&a, NULL);
-	ft_sort(&a);
-	free_stack(&a);
+		stack = ft_init_argc_n(argv);
+	ft_check_dup(stack, stack->len_b);
+	ft_sort(stack);
+	free_stack(stack);
 	return (1);
 }

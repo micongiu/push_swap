@@ -6,7 +6,7 @@
 /*   By: micongiu <micongiu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 15:41:33 by micongiu          #+#    #+#             */
-/*   Updated: 2024/10/05 16:53:06 by micongiu         ###   ########.fr       */
+/*   Updated: 2024/10/08 21:46:14 by micongiu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,22 +32,20 @@ long long int	ft_atoi_swap(const char *str)
 	return (sign * result);
 }
 
-int	ft_check_dup(t_stack *a)
+void	ft_check_dup(t_stack *stack, int k)
 {
-	t_stack	*tmp;
+	int	i;
+	int	j;
 
-	while (a)
+	i = 0;
+	while (i < k)
 	{
-		tmp = a->next;
-		while (tmp)
-		{
-			if (a->nb == tmp->nb)
-				return (0);
-			tmp = tmp->next;
-		}
-		a = a->next;
+		j = i;
+		while (++j < k)
+			if (stack->a[i] == stack->a[j])
+				free_stack_error(stack);
+		i++;
 	}
-	return (1);
 }
 
 int	is_num_or_sign(char c)
@@ -72,17 +70,4 @@ int	dup_0_or_sign(char *c)
 		i++;
 	}
 	return (0);
-}
-
-int	ft_stack_size(t_stack *stack)
-{
-	size_t	i;
-
-	i = 0;
-	while (stack)
-	{
-		stack = stack->next;
-		i++;
-	}
-	return (i);
 }

@@ -6,7 +6,7 @@
 /*   By: micongiu <micongiu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 15:39:15 by micongiu          #+#    #+#             */
-/*   Updated: 2024/10/05 16:51:41 by micongiu         ###   ########.fr       */
+/*   Updated: 2024/10/08 21:23:47 by micongiu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,26 +35,21 @@ void	free_matrix(void **matrix)
 	matrix = NULL;
 }
 
-void	free_stack(t_stack **stack)
+void	free_stack(t_stack *stack)
 {
-	t_stack	*tmp;
-
-	if (!stack || !(*stack))
-		return ;
-	while (*stack)
-	{
-		tmp = (*stack)->next;
-		free(*stack);
-		*stack = tmp;
-	}
-	*stack = NULL;
+	free(stack->a);
+	free(stack->b);
+	if (stack)
+		free(stack);
+	exit(0);
 }
 
-void	ft_error_free(t_stack **stack_a, t_stack **stack_b)
+void	free_stack_error(t_stack *stack)
 {
-	if (stack_a == NULL || *stack_a != NULL)
-		free_stack(stack_a);
-	if (stack_b == NULL || *stack_b != NULL)
-		free_stack(stack_b);
+	free(stack->a);
+	free(stack->b);
+	if (stack)
+		free(stack);
 	ft_error();
+	exit(0);
 }

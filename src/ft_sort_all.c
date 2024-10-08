@@ -1,100 +1,64 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_sort_all.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: micongiu <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/08 21:45:32 by micongiu          #+#    #+#             */
+/*   Updated: 2024/10/08 21:45:33 by micongiu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
 
-void	ft_sort_3(t_stack **a)
-{
-	int	max_index; 
-
-	max_index = ft_find_index((*a), ft_max(*a));
-	if (max_index == 1) 
-		ra(a);
-	else if (max_index == 2)
-		rra(a);
-	if ((*a)->nb > (*a)->next->nb)
-		sa(a);
-}
-
-
-void	push_from_max_to_min(t_stack **a, t_stack **b, int max, int min)
+int	ft_is_sort(int *stack, int len)
 {
 	int	i;
 
-	i = 0;
-	while (max > i)
-	{
-		ra(a);
-		i++;
-	}
-	pb(a, b);
 	i = 1;
-	while (min - max > i)
+	while (i < len)
 	{
-		ra(a);
+		if (stack[i - 1] > stack[i])
+			return (0);
 		i++;
 	}
-	pb(a, b);
+	return (1);
 }
 
-void	ft_sort_5(t_stack **a)
+int	ft_is_sort_desc(int *stack, int len)
 {
-	t_stack	*b;
-	int		min;
-	int		max;
+	int	i;
 
-	b = NULL;
-	min = ft_find_index(a, ft_min(a));
-	max = ft_find_index(a, ft_max(a));
-	if (max > min)
-		push_from_max_to_min(a, &b, max, min);
-	else
-		push_from_min_to_max(a, &b, min, max);
-	ft_sort_3(a);
-	if (b->nb > b->next->nb)
-		ft_sb(b);
-	ft_pa(a, b);
-	ft_pa(a, b);
-	ft_ra(a);
+	i = 1;
+	while (i < len)
+	{
+		if (stack[i - 1] < stack[i])
+			return (0);
+		i++;
+	}
+	return (1);
 }
 
-void	ft_sort_n(t_stack **a)
+void	ft_sort_3(t_stack *a)
 {
-	t_stack	*b;
-	int		index;
+	int	max_index;
 
-	b = NULL;
-	index = 0;
-	pb(a, &b);
-	pb(a, &b);
-	if (b->nb < b->next->nb)
-		sb(b);
-	if (!ft_is_sort(*a))
-		ft_sort_3(a);
-	ft_push_back_in_a(a, &b);
-	index = ft_find_index(*a, ft_min(*a));
-	if (index < ft_stack_size(*a) / 2)
-		{
-			while ((*a)->nb != ft_min(*a))
-				ra(a);
-		}
-		else
-		{
-			while ((*a)->nb != ft_min(*a))
-				rra(a);
-		}		
-}
-
-void	ft_sort(t_stack **a)
-{
-	int		size;
-
-	if (ft_is_sort(*a) == 1)
-		return ;
-	size = ft_stack_size(*a);
-	if (size == 2)
+	max_index = find_index((a->a), ft_max(a->a, a->len_a));
+	if (max_index == 0)
+		ra(a);
+	else if (max_index == 1)
+		rra(a);
+	if (a->a[0] > a->a[1])
 		sa(a);
-	else if (size == 3)
-		ft_sort_3(a);
-	else if (size == 5)
-		ft_sort_5(a);
+}
+
+void	ft_sort(t_stack *stack)
+{
+	if (stack->len_a == 2)
+		sa(stack);
+	else if (stack->len_a)
+		ft_sort_3(stack);
 	else
-		ft_sort_n(a);
+		quick_sort_a(stack, stack->len_a, 0);
 }

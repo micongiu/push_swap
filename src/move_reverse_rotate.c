@@ -1,40 +1,47 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   move_reverse_rotate.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: micongiu <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/08 21:45:45 by micongiu          #+#    #+#             */
+/*   Updated: 2024/10/08 21:45:46 by micongiu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
 
-void	ft_stack_reverse_rotate(t_stack **stack)
+void	ft_stack_reverse_rotate(int *stack, int i)
 {
-	t_stack	*tmp_last;
-	t_stack	*tmp_before_last;
-	t_stack	*tmp;
+	int	len;
+	int	tmp;
 
-	tmp = *(stack);
-	if (!(tmp && tmp->next))
-		return ;
-	tmp_last = tmp;
-	while (tmp_last->next)
+	tmp = stack[i - 1];
+	len = i;
+	while (len > 0)
 	{
-		tmp_before_last = tmp_last;
-		tmp_last = tmp_last->next;
+		stack[len] = stack[len - 1];
+		len--;
 	}
-	tmp_last->next = tmp;
-	tmp_before_last->next = NULL;
-	*stack = tmp_last;
+	stack[0] = tmp;
 }
 
-void	rra(t_stack **a)
+void	rra(t_stack *a)
 {
-	ft_stack_reverse_rotate(a);
+	ft_stack_reverse_rotate(a->a, a->len_a);
 	ft_printf("rra\n");
 }
 
-void	rrb(t_stack **b)
+void	rrb(t_stack *b)
 {
-	ft_stack_reverse_rotate(b);
+	ft_stack_reverse_rotate(b->b, b->len_b);
 	ft_printf("rrb\n");
 }
 
-void	rrr(t_stack **a, t_stack **b)
+void	rrr(t_stack *a, t_stack *b)
 {
-	ft_stack_reverse_rotate(a);
-	ft_stack_reverse_rotate(b);
+	ft_stack_reverse_rotate(a->a, a->len_a);
+	ft_stack_reverse_rotate(b->b, b->len_b);
 	ft_printf("rrr\n");
 }
